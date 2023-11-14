@@ -26,4 +26,4 @@ SELECT DISTINCT teachers.* FROM teachers INNER JOIN course_teacher ON teachers.i
 7. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti
 per ogni esame, stampando anche il voto massimo. Successivamente,
 filtrare i tentativi con voto minimo 18.
-SELECT COUNT(exam_student.vote) AS 'attempts', MAX(exam_student.vote), exams.id AS 'exam', students.name AS 'student_name', students.surname AS 'student_surname' FROM students INNER JOIN exam_student ON students.id = exam_student.student_id INNER JOIN exams ON exams.id = exam_student.exam_id GROUP BY exams.id ORDER BY students.surname, students.name
+SELECT COUNT(exam_student.vote) AS 'attempts', MAX(exam_student.vote), exams.id AS 'exam', students.name AS 'student_name', students.surname AS 'student_surname' FROM students INNER JOIN exam_student ON students.id = exam_student.student_id INNER JOIN exams ON exams.id = exam_student.exam_id GROUP BY exams.id HAVING MAX(exam_student.vote) >= 18 ORDER BY students.surname, students.name;
